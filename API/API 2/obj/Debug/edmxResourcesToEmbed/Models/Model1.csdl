@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Test_taskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Summary_table_users_tools">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tools" Type="Int32" Nullable="false" />
+    <Property Name="id_users" Type="Int32" Nullable="false" />
+    <Property Name="countTols" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tools">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="countTools" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ModelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Summary_table_users_tools" EntityType="Self.Summary_table_users_tools" />
+    <EntitySet Name="Tools" EntityType="Self.Tools" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <FunctionImport Name="JoinTables" ReturnType="Collection(Test_taskModel.JoinTables_Result)" />
+    <FunctionImport Name="ToolsQuery" ReturnType="Collection(Test_taskModel.ToolsQuery_Result)" />
+  </EntityContainer>
+  <ComplexType Name="JoinTables_Result">
+    <Property Type="String" Name="FIO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="countTols" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="sid" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ToolsQuery_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

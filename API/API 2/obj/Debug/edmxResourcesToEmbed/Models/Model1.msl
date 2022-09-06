@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Test_taskModelContainer" CdmEntityContainer="ModelDBEntities">
+    <EntitySetMapping Name="Summary_table_users_tools">
+      <EntityTypeMapping TypeName="Test_taskModel.Summary_table_users_tools">
+        <MappingFragment StoreEntitySet="Summary_table_users_tools">
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="id_tools" ColumnName="id_tools" />
+          <ScalarProperty Name="id_users" ColumnName="id_users" />
+          <ScalarProperty Name="countTols" ColumnName="countTols" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tools">
+      <EntityTypeMapping TypeName="Test_taskModel.Tools">
+        <MappingFragment StoreEntitySet="Tools">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="countTools" ColumnName="countTools" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Test_taskModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="JoinTables" FunctionName="Хранилище Test_taskModel.JoinTables">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Test_taskModel.JoinTables_Result">
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="countTols" ColumnName="countTols" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ToolsQuery" FunctionName="Хранилище Test_taskModel.ToolsQuery">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Test_taskModel.ToolsQuery_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
