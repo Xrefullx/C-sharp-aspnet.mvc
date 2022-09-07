@@ -16,6 +16,7 @@ export class Tools extends Component{
             sid:0,
             summary:[]
         }
+        this.refreshList = this.refreshList.bind(this)
     }
     //коннект API
     
@@ -24,7 +25,6 @@ export class Tools extends Component{
         .then(response=>response.json())
         .then(data=>{
             this.setState({summary:data});
-            console.log(data)
         });
     }
 
@@ -36,7 +36,6 @@ export class Tools extends Component{
     addClick(){
         this.setState({
             modalTitle:"Добавление записи",
-
         });
     }
     GetUsers(){
@@ -135,6 +134,7 @@ export class Tools extends Component{
 <Popup
  users={this.state.users}
  tools={this.state.tools}
+ refreshList={this.refreshList}
 />
 </div>
         )

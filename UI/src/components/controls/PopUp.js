@@ -3,6 +3,7 @@ import Select from 'react-select';
 import '../../App.css';
 import {variables} from '../../api/api.js';
 import axios from 'axios';
+import Tools from '../../pages/Tools';
 export default class PopUp extends React.Component{
 
     constructor(props){
@@ -14,21 +15,11 @@ export default class PopUp extends React.Component{
             id_users:0,
             options:[],
             countTols:0,
+            summary:[]
         }
-        this.onClear = this.onClear.bind(this)
-        this.pushData = this.pushData.bind(this)
-    } 
-    componentDidMount(){
-        this.refreshList();
-    }
-    refreshList(){
-        fetch('https://localhost:44385/api/Table')
-        .then(response=>response.json())
-        .then(data=>{
-            this.setState({summary:data});
-            console.log(data)
-        });
-    }
+
+        } 
+
     setOptionUsers(data) {
         const s = data.map(user => (
             {value:user.id,label:user.FIO}
@@ -37,9 +28,7 @@ export default class PopUp extends React.Component{
         
         return s;
     }
-    onClear(){
-        this.props.onClear()
-    }
+
     setOptionTools(data) {
         const s = data.map(tool => (
             {value:tool.id,label:tool.name}
@@ -64,15 +53,14 @@ export default class PopUp extends React.Component{
                 id_users:this.state.id_users,
                 countTols:this.state.countTols
             })
-        })
-        .then(res=>res.json(),)
-        .then((result)=>{
-            console.log(result)
-            alert("Пользователь успешно добавлен, для просмотра обновите страницу");
-            this.refreshList();
             
+        })
+        .then(res=>res.json())
+        .then((result)=>{
+            alert(result);
+            this.props.refreshList();
         },(error)=>{
-            alert('Failed');
+            alert('Проверьте корректность введённых данных');
         })
 }
     render(){
@@ -97,7 +85,7 @@ export default class PopUp extends React.Component{
               <label className='textInput' >Количество выдаваемого инструмента</label>
        <div className="text-field text-field_floating">
        <input className='text' onChange={(e)=>{this.setState({countTols:e.target.value}); console.log(this.state.countTols)}} value={this.state.countTols}/>
-       <button className='buttonCreate' onClick={this.pushData}>Создать</button>   
+       <button className='buttonCreate' onClick={()=>this.pushData()} >Создать</button>   
        </div>            
             </div>
        </div>
@@ -107,4 +95,3 @@ export default class PopUp extends React.Component{
         )
     }
 }
-/*100 -  Проблема с очисткой инпутов */

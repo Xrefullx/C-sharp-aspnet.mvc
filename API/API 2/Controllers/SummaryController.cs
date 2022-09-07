@@ -78,15 +78,24 @@ namespace API_2.Controllers
         [ResponseType(typeof(Summary_table_users_tools))]
         public IHttpActionResult PostSummary_table_users_tools(Summary_table_users_tools summary_table_users_tools)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Summary_table_users_tools.Add(summary_table_users_tools);
-            db.SaveChanges();
+            try
+            {
+                db.Summary_table_users_tools.Add(summary_table_users_tools);
+                db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = summary_table_users_tools.sid }, summary_table_users_tools);
+                return CreatedAtRoute("DefaultApi", new { id = summary_table_users_tools.sid }, summary_table_users_tools);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(HttpStatusCode.InternalServerError);
+            }   
         }
 
         // DELETE: api/Summary/5
